@@ -1,5 +1,5 @@
 export const PATHS = {
-  home: "/",
+  home: "/home",
   loginByEmail: "/login-by-email",
   otpConfirmation: ({ email }: { email: string }) => {
     const params = new URLSearchParams();

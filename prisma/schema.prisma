@@ -25,7 +25,7 @@ model User {
   Session Session[]
   Account Account[]
 
-  profile Profile[]
+  profile Profile?
 
   @@unique([email])
   @@map("user")
@@ -78,12 +78,13 @@ model Verification {
 }
 
 model Profile {
-  userId    String   @id
+  userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   nickname String
 
+  @@unique([userId])
   @@map("profile")
 }

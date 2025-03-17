@@ -33,16 +33,10 @@ export const LoginByEmailFormContainer = () => {
   const onSubmit = async ({ email }: LoginByEmailFormValues) => {
     try {
       startTransition(async () => {
-        // const userAlreadyExist = await checkUserAlreadyExistAction({ email });
-
-        // if (userAlreadyExist) {
-        //   router.push(PATHS());
         const { error } = await authClient.emailOtp.sendVerificationOtp({
           email,
           type: "sign-in",
         });
-
-        console.log({ error });
 
         if (error) {
           throw new Error(error.message);
