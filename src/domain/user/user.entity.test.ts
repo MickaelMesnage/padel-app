@@ -6,7 +6,11 @@ describe("UserEntity", () => {
     it("should return true when profile is not null", () => {
       const user = new UserEntity({
         email: "john@example.com",
-        profile: { nickname: "John" },
+        profile: {
+          nickname: "John",
+          acceptEmails: true,
+          level: "FIVE",
+        },
       });
 
       expect(user.isProfileComplete).toBe(true);
@@ -26,7 +30,11 @@ describe("UserEntity", () => {
     it("should return nickname when profile exists", () => {
       const user = new UserEntity({
         email: "john@example.com",
-        profile: { nickname: "Johnny" },
+        profile: {
+          nickname: "Johnny",
+          acceptEmails: true,
+          level: "FIVE",
+        },
       });
 
       expect(user.name).toBe("Johnny");
