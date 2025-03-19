@@ -1,0 +1,59 @@
+"use client";
+
+import { createGameAction } from "@/app/games/create/createGame.action";
+import {
+  gameFormSchema,
+  GameFormValues,
+} from "@/components/organisms/game/game.schema";
+import { GameFormFields } from "@/components/organisms/game/gameFormFields";
+import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+export const GameCreateFormContainer = () => {
+  const router = useRouter();
+  const [pending, startTransition] = useTransition();
+
+  const form = useForm<GameFormValues>({
+    resolver: zodResolver(gameFormSchema),
+  });
+
+  const { handleSubmit } = form;
+
+  const onSubmit = async (data: GameFormValues) => {
+    try {
+      startTransition(async () => {
+        const { date, time, ...rest } = data;
+        const dateTime = new Date(`${date}T${time}`).toISOString();
+        console.log({ ...rest, dateTime });
+        const res = await createGameAction({ ...rest, dateTime });
+
+        if (res?.serverError) {
+          throw new Error(res.serverError);
+        }
+
+        toast("Partie créée");
+        router.push("/");
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("Une erreur est survenue");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-8">
+      <FormProvider {...form}>
+        <GameFormFields />
+        <Button className="w-full" type="submit" disabled={pending}>
+          <Plus className="mr-2 h-4 w-4" />
+          Créer
+        </Button>
+      </FormProvider>
+    </form>
+  );
+};

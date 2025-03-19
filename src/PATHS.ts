@@ -7,4 +7,8 @@ export const PATHS = {
     return `/otp-confirmation?${params.toString()}`;
   },
   profile: "/profile",
+  games: {
+    create: "/games/create",
+    update: ({ gameId }: { gameId: string }) => `/games/update/${gameId}`,
+  },
 };

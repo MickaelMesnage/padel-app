@@ -10,26 +10,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { LEVELS } from "@/domain/user/user.constants";
+import { levelMap, LEVELS } from "@/domain/user/user.constants";
 import { User } from "lucide-react";
 import { Controller, useFormContext } from "react-hook-form";
-
-const levelMap = {
-  ONE: "1",
-  TWO: "2",
-  THREE: "3",
-  THREE_PLUS: "3+",
-  FOUR: "4",
-  FOUR_PLUS: "4+",
-  FIVE: "5",
-  FIVE_PLUS: "5+",
-  SIX: "6",
-  SIX_PLUS: "6+",
-  SEVEN: "7",
-  EIGHT: "8",
-  NINE: "9",
-  TEN: "10",
-};
 
 export const ProfileFormFields = () => {
   const form = useFormContext<ProfileFormValues>();
