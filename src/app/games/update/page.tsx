@@ -1,23 +1,21 @@
 import { GameUpdateFormContainer } from "@/app/games/update/GameUpdateFormContainer";
-import { getGameIdFromQueryParams } from "@/app/games/update/getGameIdFromQueryParams";
 import { GameEntity } from "@/application/domain/game/game.entity";
 import { getGameById } from "@/application/usecases/game/getGameById";
 import { getPadelComplexs } from "@/application/usecases/padel-complex/getPadelComplexs";
 import { getAuthenticatedUser } from "@/lib/auth/getAuthenticatedUser";
-import { SearchParams } from "@/utils/SearchParams.type";
 import { unauthorized } from "next/navigation";
 
-export default async function CreateGamePage({
-  searchParams,
-}: {
-  searchParams: SearchParams;
-}) {
-  const { id: userId } = await getAuthenticatedUser();
-  const gameId = await getGameIdFromQueryParams(searchParams);
-  const game = await getGameById({ gameId });
-  const { canUserUpdateGame } = new GameEntity(game);
+type Params = Promise<{ gameId: string }>;
 
-  if (!canUserUpdateGame({ userId })) {
+export default async function UpdateGamePage(props: { params: Params }) {
+  const params = await props.params;
+  const gameId = params.gameId;
+
+  const { id: userId } = await getAuthenticatedUser();
+  const game = await getGameById({ gameId });
+  const gameEntity = new GameEntity(game);
+
+  if (!gameEntity.canUserUpdateGame({ userId })) {
     unauthorized();
   }
 
