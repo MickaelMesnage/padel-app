@@ -6,7 +6,7 @@ export default async function CreateGamePage() {
 
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-8">Créer une partie</h1>
+      <h1 className="text-2xl font-bold mb-8">Créer une annonce</h1>
       <GameCreateFormContainer padelComplexs={padelComplexs} />
     </main>
   );

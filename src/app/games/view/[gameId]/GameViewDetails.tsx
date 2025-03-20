@@ -8,7 +8,7 @@ interface GameViewDetailsProps {
 export const GameViewDetails = ({ game }: GameViewDetailsProps) => {
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-2xl font-bold">Détails de la partie</h1>
+      <h1 className="text-2xl font-bold">Détails de l&apos;annonce</h1>
       <GameCard game={game} />
     </div>
   );

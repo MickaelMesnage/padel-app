@@ -46,7 +46,7 @@ export const GameCreateFormContainer = ({
           throw new Error(res.serverError);
         }
 
-        toast("Partie créée");
+        toast("Annonce créée");
         router.push("/");
       });
     } catch (error) {

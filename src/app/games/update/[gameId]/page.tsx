@@ -29,7 +29,7 @@ export default async function UpdateGamePage(props: { params: Params }) {
 
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-8">Modifier une partie</h1>
+      <h1 className="text-2xl font-bold mb-8">Modifier une annonce</h1>
       <GameUpdateFormContainer
         defaultValues={defaultValues}
         gameId={gameId}

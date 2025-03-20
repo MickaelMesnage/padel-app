@@ -47,7 +47,7 @@ export const GameUpdateFormContainer = ({
           throw new Error(res.serverError);
         }
 
-        toast("Partie modifée");
+        toast("Annonce modifée");
         router.push("/");
       });
     } catch (error) {

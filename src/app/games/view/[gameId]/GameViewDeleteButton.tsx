@@ -25,7 +25,7 @@ export const GameViewDeleteButton = ({ game }: GameViewDeleteButtonProps) => {
           throw new Error(res.serverError);
         }
 
-        toast("Partie supprimée");
+        toast("Annonce supprimée");
         router.push(PATHS.home);
       });
     } catch (error) {

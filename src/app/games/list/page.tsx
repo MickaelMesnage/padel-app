@@ -10,7 +10,7 @@ export default async function ListGamesPage() {
 
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-8">Mes parties</h1>
+      <h1 className="text-2xl font-bold mb-8">Liste des annonces</h1>
       <div className="w-full flex flex-col gap-4">
         {games.map((game) => (
           <Link key={game.id} href={PATHS.games.view({ gameId: game.id })}>

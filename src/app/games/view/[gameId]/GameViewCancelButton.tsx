@@ -25,7 +25,7 @@ export const GameViewCancelButton = ({ game }: GameViewCancelButtonProps) => {
           throw new Error(res.serverError);
         }
 
-        toast("Partie annulée");
+        toast("Annonce annulée");
         router.push(PATHS.home);
       });
     } catch (error) {
