@@ -35,6 +35,14 @@ export class GameEntity {
     return this._creatorUserId === userId;
   }
 
+  public canUserDeleteGame({ userId }: { userId: string }) {
+    return this._creatorUserId === userId && this.nbOfPlayers === 0;
+  }
+
+  public canUserCancelGame({ userId }: { userId: string }) {
+    return this._creatorUserId === userId && this.nbOfPlayers > 0;
+  }
+
   public isUserCreator({ userId }: { userId: string }) {
     return this._creatorUserId === userId;
   }
@@ -51,7 +59,11 @@ export class GameEntity {
     }));
   }
 
+  public get nbOfPlayers() {
+    return this._players.length;
+  }
+
   public get nbOfMissingPlayers() {
-    return this._nbOfPlayersToFind - this._players.length;
+    return this._nbOfPlayersToFind - this.nbOfPlayers;
   }
 }

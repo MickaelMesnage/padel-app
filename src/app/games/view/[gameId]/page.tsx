@@ -1,5 +1,7 @@
+import { GameViewActions } from "@/app/games/view/[gameId]/GameViewActions";
+import { GameViewDetails } from "@/app/games/view/[gameId]/GameViewDetails";
+import { GameViewParticipants } from "@/app/games/view/[gameId]/GameViewParticipants";
 import { getGameById } from "@/application/usecases/game/getGameById";
-import { GameCard } from "@/components/organisms/game/GameCard/GameCard";
 
 type Params = Promise<{ gameId: string }>;
 
@@ -10,9 +12,10 @@ export default async function ViewGamePage(props: { params: Params }) {
   const game = await getGameById({ gameId });
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-8">Détails de la partie</h1>
-      <GameCard game={game} />
+    <main className="container mx-auto px-4 py-8 flex flex-col gap-8">
+      <GameViewDetails game={game} />
+      <GameViewParticipants game={game} />
+      <GameViewActions game={game} />
     </main>
   );
 }

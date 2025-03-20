@@ -121,6 +121,7 @@ model Game {
   nbOfPlayersToFind Int
   description       String              @default("")
   level             Level
+  isCancelled       Boolean             @default(false)
   padelComplexId    String
   padelComplex      PadelComplex        @relation(fields: [padelComplexId], references: [id], onDelete: Cascade)
   participations    GameParticipation[]
