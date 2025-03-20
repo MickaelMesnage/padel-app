@@ -1,5 +1,6 @@
 import { Level } from "@/application/domain/constants/level.const";
 import { GameEntity } from "@/application/domain/game/game.entity";
+import { getGameById } from "@/application/usecases/game/getGameById";
 import prisma from "@/lib/prisma/prisma";
 
 export const UPDATE_GAME_ERROR = {
@@ -16,25 +17,13 @@ export const updateGame = async ({
   data: {
     dateTime: string;
     durationInMinutes: number;
-    nbMissingPlayers: number;
+    nbOfPlayersToFind: number;
     level: Level;
     description: string;
+    padelComplexId: string;
   };
 }) => {
-  const game = await prisma.game.findUniqueOrThrow({
-    where: { id: gameId },
-    include: {
-      participations: {
-        include: {
-          user: {
-            include: {
-              profile: true,
-            },
-          },
-        },
-      },
-    },
-  });
+  const game = await getGameById({ gameId });
 
   const gameEntity = new GameEntity(game);
 
@@ -42,9 +31,15 @@ export const updateGame = async ({
     throw new Error(UPDATE_GAME_ERROR.USER_CANNOT_UPDATE_GAME);
   }
 
+  console.log({ data });
+
   const updatedGame = await prisma.game.update({
     where: { id: gameId },
-    data: { ...data },
+    data: {
+      ...data,
+      // Why is this needed?
+      padelComplexId: data.padelComplexId,
+    },
   });
 
   return updatedGame;
