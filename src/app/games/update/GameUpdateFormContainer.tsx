@@ -1,6 +1,6 @@
 "use client";
 
-import { createGameAction } from "@/app/games/create/createGame.action";
+import { updateGameAction } from "@/app/games/update/updateGame.action";
 import {
   gameFormSchema,
   GameFormValues,
@@ -14,22 +14,23 @@ import { useTransition } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-interface GameCreateFormContainerProps {
+interface GameUpdateFormContainerProps {
+  gameId: string;
+  defaultValues: GameFormValues;
   padelComplexs: { id: string; name: string }[];
 }
 
-export const GameCreateFormContainer = ({
+export const GameUpdateFormContainer = ({
+  gameId,
+  defaultValues,
   padelComplexs,
-}: GameCreateFormContainerProps) => {
+}: GameUpdateFormContainerProps) => {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
 
   const form = useForm<GameFormValues>({
     resolver: zodResolver(gameFormSchema),
-    defaultValues: {
-      padelComplexId: "",
-      description: "",
-    },
+    defaultValues,
   });
 
   const { handleSubmit } = form;
@@ -40,13 +41,13 @@ export const GameCreateFormContainer = ({
         const { date, time, ...rest } = data;
         const dateTime = new Date(`${date}T${time}`).toISOString();
 
-        const res = await createGameAction({ ...rest, dateTime });
+        const res = await updateGameAction({ ...rest, dateTime, gameId });
 
         if (res?.serverError) {
           throw new Error(res.serverError);
         }
 
-        toast("Partie créée");
+        toast("Partie modifée");
         router.push("/");
       });
     } catch (error) {
@@ -61,7 +62,7 @@ export const GameCreateFormContainer = ({
         <GameFormFields padelComplexs={padelComplexs} />
         <Button className="w-full" type="submit" disabled={pending}>
           <Plus className="mr-2 h-4 w-4" />
-          Créer
+          Modifier
         </Button>
       </FormProvider>
     </form>

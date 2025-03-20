@@ -1,4 +1,4 @@
-import { LEVELS } from "@/domain/user/user.constants";
+import { LEVELS } from "@/application/domain/constants/level.const";
 import { z } from "zod";
 
 export const profileFormSchema = z.object({

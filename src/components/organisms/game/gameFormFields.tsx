@@ -10,15 +10,42 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { levelMap, LEVELS } from "@/domain/user/user.constants";
+import { levelMap, LEVELS } from "@/application/domain/constants/level.const";
 import { Controller, useFormContext } from "react-hook-form";
 import { Clock, Calendar, Users } from "lucide-react";
+import { SelectNative } from "@/components/ui/select-native";
 
-export const GameFormFields = () => {
+interface GameFormFieldsProps {
+  padelComplexs: { id: string; name: string }[];
+}
+
+export const GameFormFields = ({ padelComplexs }: GameFormFieldsProps) => {
   const form = useFormContext<GameFormValues>();
 
   return (
     <>
+      <FormField
+        control={form.control}
+        name="padelComplexId"
+        render={({ field }) => (
+          <FormItem className="text-start col-span-2">
+            <FormLabel htmlFor={field.name}>Complexe</FormLabel>
+            <FormControl>
+              <SelectNative {...field}>
+                <option value="" disabled>
+                  Sélectionner un complexe
+                </option>
+                {padelComplexs.map((complex) => (
+                  <option key={complex.id} value={complex.id}>
+                    {complex.name}
+                  </option>
+                ))}
+              </SelectNative>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
       <FormField
         control={form.control}
         name="date"
@@ -79,7 +106,7 @@ export const GameFormFields = () => {
 
       <FormField
         control={form.control}
-        name="nbMissingPlayers"
+        name="nbOfPlayersToFind"
         render={({ field }) => (
           <FormItem className="text-start col-span-2 md:col-span-1">
             <FormLabel htmlFor={field.name}>

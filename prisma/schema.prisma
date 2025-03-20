@@ -118,9 +118,11 @@ model Game {
   creatorUserId     String
   dateTime          DateTime
   durationInMinutes Int
-  nbMissingPlayers  Int
-  description       String?
+  nbOfPlayersToFind Int
+  description       String              @default("")
   level             Level
+  padelComplexId    String
+  padelComplex      PadelComplex        @relation(fields: [padelComplexId], references: [id], onDelete: Cascade)
   participations    GameParticipation[]
 }
 
@@ -133,4 +135,15 @@ model GameParticipation {
   gameId    String
 
   @@unique([userId, gameId])
+}
+
+model PadelComplex {
+  id      String @id @default(cuid())
+  name    String
+  address String
+  city    String
+  zipCode String
+  country String
+
+  games Game[]
 }

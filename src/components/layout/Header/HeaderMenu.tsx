@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { PATHS } from "@/PATHS";
-import { MenuIcon, UserIcon } from "lucide-react";
+import { ListIcon, MenuIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
 
 export const HeaderMenu = () => {
@@ -21,8 +21,12 @@ export const HeaderMenu = () => {
       <DropdownMenuContent align="end">
         <DropdownMenuItem asChild>
           <Link href={PATHS.profile}>
-            <UserIcon className="h-4 w-4" />
-            Profile
+            <UserIcon className="size-4" />
+            Mon profil
+          </Link>
+          <Link href={PATHS.games.list}>
+            <ListIcon className="size-4" />
+            Games
           </Link>
         </DropdownMenuItem>
         <LogoutMenuItem />

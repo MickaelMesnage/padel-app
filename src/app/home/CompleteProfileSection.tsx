@@ -1,4 +1,4 @@
-import { getUserById } from "@/server/user/getUserById";
+import { getUserById } from "@/application/usecases/user/getUserById";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getSession } from "@/lib/auth/getSession";

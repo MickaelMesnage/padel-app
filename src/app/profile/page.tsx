@@ -1,7 +1,7 @@
 import { ProfileFormContainer } from "@/app/profile/ProfileFormContainer";
-import { UserEntity } from "@/domain/user/user.entity";
+import { UserEntity } from "@/application/domain/user/user.entity";
 import { getAuthenticatedUser } from "@/lib/auth/getAuthenticatedUser";
-import { getUserById } from "@/server/user/getUserById";
+import { getUserById } from "@/application/usecases/user/getUserById";
 
 export default async function Page() {
   const { id: userId } = await getAuthenticatedUser();

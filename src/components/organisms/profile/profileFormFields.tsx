@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { levelMap, LEVELS } from "@/domain/user/user.constants";
+import { levelMap, LEVELS } from "@/application/domain/constants/level.const";
 import { User } from "lucide-react";
 import { Controller, useFormContext } from "react-hook-form";
 

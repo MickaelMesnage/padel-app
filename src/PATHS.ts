@@ -10,5 +10,6 @@ export const PATHS = {
   games: {
     create: "/games/create",
     update: ({ gameId }: { gameId: string }) => `/games/update/${gameId}`,
+    list: "/games/list",
   },
 };

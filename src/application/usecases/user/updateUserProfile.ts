@@ -1,7 +1,7 @@
-import { Level } from "@/domain/user/user.constants";
+import { Level } from "@/application/domain/constants/level.const";
 import prisma from "@/lib/prisma/prisma";
 
-export const updateProfile = async ({
+export const updateUserProfile = async ({
   userId,
   data,
 }: {

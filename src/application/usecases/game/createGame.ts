@@ -1,4 +1,4 @@
-import { Level } from "@/domain/user/user.constants";
+import { Level } from "@/application/domain/constants/level.const";
 import prisma from "@/lib/prisma/prisma";
 
 export const createGame = async ({
@@ -9,9 +9,10 @@ export const createGame = async ({
   data: {
     dateTime: string;
     durationInMinutes: number;
-    nbMissingPlayers: number;
+    nbOfPlayersToFind: number;
     level: Level;
-    description?: string | undefined;
+    description: string;
+    padelComplexId: string;
   };
 }) => {
   const game = await prisma.game.create({
