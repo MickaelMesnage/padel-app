@@ -9,8 +9,12 @@ export const PATHS = {
   profile: "/profile",
   games: {
     create: "/games/create",
-    update: ({ gameId }: { gameId: string }) => `/games/update/${gameId}`,
     list: "/games/list",
-    view: ({ gameId }: { gameId: string }) => `/games/view/${gameId}`,
+    update: ({ gameId }: { gameId: string }) => `/games/${gameId}/update`,
+    view: ({ gameId }: { gameId: string }) => `/games/${gameId}/view`,
+    delete: ({ gameId }: { gameId: string }) => `/games/${gameId}/delete`,
+    cancel: ({ gameId }: { gameId: string }) => `/games/${gameId}/cancel`,
+    join: ({ gameId }: { gameId: string }) => `/games/${gameId}/join`,
+    leave: ({ gameId }: { gameId: string }) => `/games/${gameId}/leave`,
   },
 };

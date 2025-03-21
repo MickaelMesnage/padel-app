@@ -2,6 +2,7 @@
 
 import { Game } from "@/application/domain/game/game.entity";
 import { Button } from "@/components/ui/button";
+import { PATHS } from "@/PATHS";
 import Link from "next/link";
 
 interface GameViewUpdateButtonProps {
@@ -10,7 +11,7 @@ interface GameViewUpdateButtonProps {
 
 export const GameViewUpdateButton = ({ game }: GameViewUpdateButtonProps) => {
   return (
-    <Link href={`/games/update/${game.id}`} passHref>
+    <Link href={PATHS.games.update({ gameId: game.id })} passHref>
       <Button>Modifier</Button>
     </Link>
   );

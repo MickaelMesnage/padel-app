@@ -1,4 +1,4 @@
-import { GameUpdateFormContainer } from "@/app/games/update/[gameId]/GameUpdateFormContainer";
+import { GameUpdateFormContainer } from "@/app/games/[gameId]/update/GameUpdateFormContainer";
 import { GameEntity } from "@/application/domain/game/game.entity";
 import { getGameById } from "@/application/usecases/game/getGameById";
 import { getPadelComplexs } from "@/application/usecases/padel-complex/getPadelComplexs";

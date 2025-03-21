@@ -1,6 +1,6 @@
 "use client";
 
-import { updateGameAction } from "@/app/games/update/updateGame.action";
+import { updateGameAction } from "@/app/games/[gameId]/update/updateGame.action";
 import { Game } from "@/application/domain/game/game.entity";
 import { PadelComplex } from "@/application/domain/padel-complex/padel.entity";
 import {
@@ -9,6 +9,7 @@ import {
 } from "@/components/organisms/game/game.schema";
 import { GameFormFields } from "@/components/organisms/game/gameFormFields";
 import { Button } from "@/components/ui/button";
+import { PATHS } from "@/PATHS";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -60,7 +61,7 @@ export const GameUpdateFormContainer = ({
         }
 
         toast("Annonce modifée");
-        router.push("/");
+        router.push(PATHS.games.view({ gameId: game.id }));
       });
     } catch (error) {
       console.error(error);

@@ -1,8 +1,8 @@
-import { GameViewCancelButton } from "@/app/games/view/[gameId]/GameViewCancelButton";
-import { GameViewDeleteButton } from "@/app/games/view/[gameId]/GameViewDeleteButton";
-import { GameViewUpdateButton } from "@/app/games/view/[gameId]/GameViewUpdateButton";
+import { GameViewUpdateButton } from "@/app/games/[gameId]/view/GameViewUpdateButton";
+import { GameViewCancelButton } from "@/app/games/[gameId]/view/GameViewCancelButton";
 import { Game, GameEntity } from "@/application/domain/game/game.entity";
 import { getSession } from "@/lib/auth/getSession";
+import { GameViewDeleteButton } from "@/app/games/[gameId]/view/GameViewDeleteButton";
 
 interface GameViewActionsProps {
   game: Game;

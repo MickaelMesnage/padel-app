@@ -1,6 +1,6 @@
-import { GameViewActions } from "@/app/games/view/[gameId]/GameViewActions";
-import { GameViewDetails } from "@/app/games/view/[gameId]/GameViewDetails";
-import { GameViewParticipants } from "@/app/games/view/[gameId]/GameViewParticipants";
+import { GameViewActions } from "@/app/games/[gameId]/view/GameViewActions";
+import { GameViewDetails } from "@/app/games/[gameId]/view/GameViewDetails";
+import { GameViewParticipants } from "@/app/games/[gameId]/view/GameViewParticipants";
 import { getGameById } from "@/application/usecases/game/getGameById";
 
 type Params = Promise<{ gameId: string }>;
