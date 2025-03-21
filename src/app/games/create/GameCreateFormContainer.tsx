@@ -7,6 +7,7 @@ import {
 } from "@/components/organisms/game/game.schema";
 import { GameFormFields } from "@/components/organisms/game/gameFormFields";
 import { Button } from "@/components/ui/button";
+import { PATHS } from "@/PATHS";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -47,7 +48,7 @@ export const GameCreateFormContainer = ({
         }
 
         toast("Annonce créée");
-        router.push("/");
+        router.push(PATHS.games.list);
       });
     } catch (error) {
       console.error(error);

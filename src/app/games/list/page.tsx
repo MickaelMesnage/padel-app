@@ -1,12 +1,10 @@
 import { GameCard } from "@/components/organisms/game/GameCard/GameCard";
-import { getUserGames } from "@/application/usecases/game/getUserGames";
-import { getAuthenticatedUser } from "@/lib/auth/getAuthenticatedUser";
 import { PATHS } from "@/PATHS";
 import Link from "next/link";
+import { getGames } from "@/application/usecases/game/getGames";
 
 export default async function ListGamesPage() {
-  const { id: userId } = await getAuthenticatedUser();
-  const games = await getUserGames({ userId });
+  const games = await getGames();
 
   return (
     <main className="container mx-auto px-4 py-8">

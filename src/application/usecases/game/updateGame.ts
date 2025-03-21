@@ -31,15 +31,9 @@ export const updateGame = async ({
     throw new Error(UPDATE_GAME_ERROR.USER_CANNOT_UPDATE_GAME);
   }
 
-  console.log({ data });
-
   const updatedGame = await prisma.game.update({
     where: { id: gameId },
-    data: {
-      ...data,
-      // Why is this needed?
-      padelComplexId: data.padelComplexId,
-    },
+    data,
   });
 
   return updatedGame;

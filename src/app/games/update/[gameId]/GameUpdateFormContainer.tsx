@@ -1,6 +1,8 @@
 "use client";
 
 import { updateGameAction } from "@/app/games/update/updateGame.action";
+import { Game } from "@/application/domain/game/game.entity";
+import { PadelComplex } from "@/application/domain/padel-complex/padel.entity";
 import {
   gameFormSchema,
   GameFormValues,
@@ -15,18 +17,24 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 interface GameUpdateFormContainerProps {
-  gameId: string;
-  defaultValues: GameFormValues;
-  padelComplexs: { id: string; name: string }[];
+  game: Game;
+  padelComplexs: PadelComplex[];
 }
 
 export const GameUpdateFormContainer = ({
-  gameId,
-  defaultValues,
+  game,
   padelComplexs,
 }: GameUpdateFormContainerProps) => {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
+
+  const defaultValues = {
+    ...game,
+    date: game.dateTime
+      .toLocaleDateString()
+      .replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1"),
+    time: game.dateTime.toLocaleTimeString(),
+  };
 
   const form = useForm<GameFormValues>({
     resolver: zodResolver(gameFormSchema),
@@ -41,7 +49,11 @@ export const GameUpdateFormContainer = ({
         const { date, time, ...rest } = data;
         const dateTime = new Date(`${date}T${time}`).toISOString();
 
-        const res = await updateGameAction({ ...rest, dateTime, gameId });
+        const res = await updateGameAction({
+          ...rest,
+          dateTime,
+          gameId: game.id,
+        });
 
         if (res?.serverError) {
           throw new Error(res.serverError);

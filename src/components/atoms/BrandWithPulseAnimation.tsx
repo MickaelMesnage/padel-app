@@ -14,16 +14,8 @@ export const BrandWithPulseAnimation = ({
       )}
     >
       <div className="animate-pulse">
-        <Image
-          height={24}
-          width={120}
-          src="/logotype-fullmotiv-dark.svg"
-          alt="logo"
-        />
+        <Image height={24} width={120} src="/fullmotiv-dark.svg" alt="logo" />
       </div>
-      {/* <span className="text-base font-medium">
-        La routourne va vite tourner...
-      </span> */}
     </div>
   );
 };

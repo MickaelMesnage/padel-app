@@ -12,8 +12,8 @@ const schema = gameFormSchema
 
 export const updateGameAction = authenticatedAction
   .schema(schema)
-  .action(async ({ parsedInput: data, ctx: { user } }) => {
-    await updateGame({ userId: user.id, gameId: data.gameId, data });
+  .action(async ({ parsedInput: { gameId, ...data }, ctx: { user } }) => {
+    await updateGame({ userId: user.id, gameId, data });
 
     revalidatePath("/");
 

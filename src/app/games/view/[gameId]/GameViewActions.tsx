@@ -11,6 +11,7 @@ interface GameViewActionsProps {
 export const GameViewActions = async ({ game }: GameViewActionsProps) => {
   const gameEntity = new GameEntity(game);
   const session = await getSession();
+
   const userCanUpdateGame = session
     ? gameEntity.canUserUpdateGame({ userId: session.id })
     : false;

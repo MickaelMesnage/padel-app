@@ -21,20 +21,10 @@ export default async function UpdateGamePage(props: { params: Params }) {
 
   const padelComplexs = await getPadelComplexs();
 
-  const defaultValues = {
-    ...game,
-    date: game.dateTime.toISOString().split("T")[0],
-    time: game.dateTime.toISOString().split("T")[1].substring(0, 5),
-  };
-
   return (
     <main className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-8">Modifier une annonce</h1>
-      <GameUpdateFormContainer
-        defaultValues={defaultValues}
-        gameId={gameId}
-        padelComplexs={padelComplexs}
-      />
+      <GameUpdateFormContainer game={game} padelComplexs={padelComplexs} />
     </main>
   );
 }
