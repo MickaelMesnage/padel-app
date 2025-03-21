@@ -1,5 +1,5 @@
 import { ActionButton } from "@/app/games/@modal/[gameId]/(.)delete/ActionButton";
-import { CancelButton } from "@/app/games/@modal/[gameId]/(.)delete/CancelButton";
+import { CancelButton } from "@/components/molecules/CancelButton";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -19,10 +19,11 @@ export default async function Page(props: { params: Params }) {
     <AlertDialog defaultOpen={true} open={true}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Voulez-vous supprimer cette annonce ?
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            Cette action est irréversible.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

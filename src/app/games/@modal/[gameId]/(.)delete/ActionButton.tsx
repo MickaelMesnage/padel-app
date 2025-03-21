@@ -25,7 +25,8 @@ export const ActionButton = ({ gameId }: ActionButtonProps) => {
         }
 
         toast("Annonce supprimée");
-        router.push(PATHS.games.list);
+        // router.back();
+        router.replace(PATHS.games.list);
       });
     } catch (error) {
       console.error(error);
