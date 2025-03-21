@@ -1,26 +1,24 @@
 "use client";
 
-import { Game } from "@/application/domain/game/game.entity";
 import { gameDeleteAction } from "@/components/organisms/game/gameDelete.action";
-import { Button } from "@/components/ui/button";
+import { AlertDialogAction } from "@/components/ui/alert-dialog";
 import { PATHS } from "@/PATHS";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { toast } from "sonner";
 
-interface GameViewDeleteButtonProps {
-  game: Game;
+interface ActionButtonProps {
+  gameId: string;
 }
 
-export const GameViewDeleteButton = ({ game }: GameViewDeleteButtonProps) => {
+export const ActionButton = ({ gameId }: ActionButtonProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const onClick = () => {
     try {
       startTransition(async () => {
-        const res = await gameDeleteAction({ gameId: game.id });
+        const res = await gameDeleteAction({ gameId });
 
         if (res?.serverError) {
           throw new Error(res.serverError);
@@ -34,12 +32,10 @@ export const GameViewDeleteButton = ({ game }: GameViewDeleteButtonProps) => {
       toast.error("Une erreur est survenue");
     }
   };
+
   return (
-    // <Button onClick={onClick} disabled={isPending} variant="destructive">
-    //   Supprimer
-    // </Button>
-    <Link href={PATHS.games.delete({ gameId: game.id })} passHref>
-      <Button variant="destructive">Supprimer via modal</Button>
-    </Link>
+    <AlertDialogAction disabled={isPending} onClick={onClick}>
+      Continue
+    </AlertDialogAction>
   );
 };

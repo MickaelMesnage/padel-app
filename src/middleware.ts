@@ -4,6 +4,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
+  console.log("middleware");
   const sessionCookie = getSessionCookie(request);
 
   const isAuthenticated = !!sessionCookie;
@@ -18,6 +19,8 @@ export async function middleware(request: NextRequest) {
     // loginUrl.searchParams.set("from", request.nextUrl.pathname);
     return NextResponse.redirect(loginUrl);
   }
+
+  console.log("middleware next");
 
   return NextResponse.next();
 }
