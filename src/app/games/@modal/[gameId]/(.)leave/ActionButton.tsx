@@ -1,8 +1,7 @@
 "use client";
 
-import { gameDeleteAction } from "@/components/organisms/game/gameDelete.action";
+import { gameLeaveAction } from "@/components/organisms/game/gameLeave.action";
 import { AlertDialogAction } from "@/components/ui/alert-dialog";
-import { PATHS } from "@/PATHS";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { toast } from "sonner";
@@ -18,15 +17,15 @@ export const ActionButton = ({ gameId }: ActionButtonProps) => {
   const onClick = () => {
     try {
       startTransition(async () => {
-        const res = await gameDeleteAction({ gameId });
+        const res = await gameLeaveAction({ gameId });
 
         if (res?.serverError) {
           throw new Error(res.serverError);
         }
 
-        toast("Annonce supprimée");
-        // router.back();
-        router.replace(PATHS.games.list);
+        toast("Vous avez supprimé votre participation");
+        router.back();
+        router.refresh();
       });
     } catch (error) {
       console.error(error);
@@ -36,7 +35,7 @@ export const ActionButton = ({ gameId }: ActionButtonProps) => {
 
   return (
     <AlertDialogAction disabled={isPending} onClick={onClick}>
-      Supprimer
+      Supprimer la participation
     </AlertDialogAction>
   );
 };

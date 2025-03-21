@@ -43,6 +43,18 @@ export class GameEntity {
     return this._creatorUserId === userId && this.nbOfPlayers > 0;
   }
 
+  public canUserJoinGame(props: { userId: string }) {
+    return (
+      !this.isFull &&
+      !this.isUserParticipating(props) &&
+      !this.isUserCreator(props)
+    );
+  }
+
+  public canUserLeaveGame({ userId }: { userId: string }) {
+    return this.isUserParticipating({ userId });
+  }
+
   public isUserCreator({ userId }: { userId: string }) {
     return this._creatorUserId === userId;
   }
@@ -65,5 +77,9 @@ export class GameEntity {
 
   public get nbOfMissingPlayers() {
     return this._nbOfPlayersToFind - this.nbOfPlayers;
+  }
+
+  public get isFull() {
+    return this.nbOfPlayers === this._nbOfPlayersToFind;
   }
 }

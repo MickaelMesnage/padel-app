@@ -16,24 +16,24 @@ export const GameParticipantCard = ({
 
   return (
     <Card className={className}>
-      <CardContent className="flex flex-col gap-2">
-        <div className="flex flex-row gap-2">
+      <CardContent>
+        <div className="w-full flex flex-row gap-2">
           <Image
-            width={28}
-            height={28}
+            width={48}
+            height={48}
             src="/images/user-avatar.png"
             alt={`${nickname} avatar`}
             title={`${nickname} avatar`}
-            className="shrink-0 rounded-lg"
+            className="rounded-lg size-12"
           />
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="grow truncate text-sm font-semibold text-primary">
-            {nickname}
-          </span>
-          <span className="text-sm text-muted-foreground">
-            Niv. {level ? levelMap[level] : "non défini"}
-          </span>
+          <div className="flex flex-col">
+            <span className="grow truncate text-sm font-semibold text-primary">
+              {nickname}
+            </span>
+            <span className="text-sm text-muted-foreground">
+              Niv. {level ? levelMap[level] : "non défini"}
+            </span>
+          </div>
         </div>
       </CardContent>
     </Card>
