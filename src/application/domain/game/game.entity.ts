@@ -12,6 +12,7 @@ export interface Game {
   level: Level;
   description: string;
   padelComplexId: string;
+  isCancelled: boolean;
   padelComplex: PadelComplex;
   participations: {
     user: User;
@@ -22,17 +23,18 @@ export class GameEntity {
   private _creatorUserId: string;
   private _nbOfPlayersToFind: number;
   private _players: UserEntity[];
-
+  private _isCancelled: boolean;
   constructor(props: Game) {
     this._nbOfPlayersToFind = props.nbOfPlayersToFind;
     this._creatorUserId = props.creatorUserId;
+    this._isCancelled = props.isCancelled;
     this._players = props.participations.map(
       (participation) => new UserEntity(participation.user)
     );
   }
 
   public canUserUpdateGame({ userId }: { userId: string }) {
-    return this._creatorUserId === userId;
+    return this._creatorUserId === userId && !this._isCancelled;
   }
 
   public canUserDeleteGame({ userId }: { userId: string }) {
@@ -40,19 +42,24 @@ export class GameEntity {
   }
 
   public canUserCancelGame({ userId }: { userId: string }) {
-    return this._creatorUserId === userId && this.nbOfPlayers > 0;
+    return (
+      this._creatorUserId === userId &&
+      this.nbOfPlayers > 0 &&
+      !this._isCancelled
+    );
   }
 
   public canUserJoinGame(props: { userId: string }) {
     return (
       !this.isFull &&
+      !this._isCancelled &&
       !this.isUserParticipating(props) &&
       !this.isUserCreator(props)
     );
   }
 
   public canUserLeaveGame({ userId }: { userId: string }) {
-    return this.isUserParticipating({ userId });
+    return this.isUserParticipating({ userId }) && !this._isCancelled;
   }
 
   public isUserCreator({ userId }: { userId: string }) {

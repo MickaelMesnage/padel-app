@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { GameCardLevelBadge } from "@/components/organisms/game/GameCard/GameCardLevelBadge";
 import { GameCardTitleTime } from "@/components/organisms/game/GameCard/GameCardTitleTime";
 import { GameCardCreatorBadge } from "@/components/organisms/game/GameCard/GameCardCreatorBadge";
+import { GameCardIsCancelledBadge } from "@/components/organisms/game/GameCard/GameCardIsCancelledBadge";
 
 interface GameCardProps {
   game: Game;
@@ -18,6 +19,7 @@ export const GameCard = ({ game, className }: GameCardProps) => {
   return (
     <Card className={className}>
       <CardContent className="flex flex-col gap-2">
+        <GameCardIsCancelledBadge isCancelled={game.isCancelled} />
         <div className="flex flex-row gap-2">
           <GameCardCreatorBadge game={game} />
           <GameCardLevelBadge level={game.level} />
