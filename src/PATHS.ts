@@ -16,5 +16,15 @@ export const PATHS = {
     cancel: ({ gameId }: { gameId: string }) => `/games/${gameId}/cancel`,
     join: ({ gameId }: { gameId: string }) => `/games/${gameId}/join`,
     leave: ({ gameId }: { gameId: string }) => `/games/${gameId}/leave`,
+    removeParticipant: ({
+      gameId,
+      participantId,
+    }: {
+      gameId: string;
+      participantId: string;
+    }) => `/games/${gameId}/remove-participant?participantId=${participantId}`,
+  },
+  public: {
+    profile: ({ userId }: { userId: string }) => `/public/profile/${userId}`,
   },
 };

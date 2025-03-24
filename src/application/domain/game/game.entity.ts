@@ -62,6 +62,10 @@ export class GameEntity {
     return this.isUserParticipating({ userId }) && !this._isCancelled;
   }
 
+  public canUserRemoveParticipant({ userId }: { userId: string }) {
+    return this._creatorUserId === userId && !this._isCancelled;
+  }
+
   public isUserCreator({ userId }: { userId: string }) {
     return this._creatorUserId === userId;
   }

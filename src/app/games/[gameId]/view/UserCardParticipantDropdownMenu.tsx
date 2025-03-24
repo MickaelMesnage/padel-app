@@ -10,24 +10,25 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { getSession } from "@/lib/auth/getSession";
+import { authClient } from "@/lib/auth/auth-client";
+import { PATHS } from "@/PATHS";
 import { MoreVerticalIcon } from "lucide-react";
+import Link from "next/link";
 
 interface UserCardParticipantDropdownMenuProps {
   user: User;
   game: Game;
 }
 
-export const UserCardParticipantDropdownMenu = async ({
+export const UserCardParticipantDropdownMenu = ({
   user,
   game,
 }: UserCardParticipantDropdownMenuProps) => {
-  const { data: session } = useSession();
-  // const session = await getSession();
+  const { data } = authClient.useSession();
   const gameEntity = new GameEntity(game);
 
-  const canUserRemoveParticipant = session
-    ? gameEntity.canUserRemoveParticipant({ userId: session.id })
+  const canUserRemoveParticipant = data
+    ? gameEntity.canUserRemoveParticipant({ userId: data.user.id })
     : false;
 
   return (
@@ -38,15 +39,25 @@ export const UserCardParticipantDropdownMenu = async ({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
-        <DropdownMenuItem>
-          Voir le profil
-          <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-        </DropdownMenuItem>
-        {canUserRemoveParticipant && (
+        <Link href={PATHS.public.profile({ userId: user.id })} passHref>
           <DropdownMenuItem>
-            Supprimer la participation
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            Voir le profil
+            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
+        </Link>
+        {canUserRemoveParticipant && (
+          <Link
+            href={PATHS.games.removeParticipant({
+              gameId: game.id,
+              participantId: user.id,
+            })}
+            passHref
+          >
+            <DropdownMenuItem>
+              Supprimer la participation
+              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
         )}
       </DropdownMenuContent>
     </DropdownMenu>
