@@ -11,7 +11,7 @@ export const Header = async () => {
   const isAuthenticated = await isUserAuthenticated();
 
   return (
-    <header className="border-b bg-foreground">
+    <header className="bg-foreground">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href={PATHS.home}>

@@ -7,14 +7,22 @@ export default async function ListGamesPage() {
   const games = await getGames();
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-8">Liste des annonces</h1>
-      <div className="w-full flex flex-col gap-4">
-        {games.map((game) => (
-          <Link key={game.id} href={PATHS.games.view({ gameId: game.id })}>
-            <GameCard game={game} className="hover:shadow-lg" />
-          </Link>
-        ))}
+    <main className="pb-16">
+      <div className="bg-primary-foreground">
+        <div className="container mx-auto px-4 py-16 flex flex-col items-center gap-12">
+          <h1 className="text-center text-secondary text-4xl font-bold">
+            Liste des annonces
+          </h1>
+        </div>
+      </div>
+      <div className="container mx-auto px-4 -mt-8">
+        <div className="w-full flex flex-col gap-4">
+          {games.map((game) => (
+            <Link key={game.id} href={PATHS.games.view({ gameId: game.id })}>
+              <GameCard game={game} className="hover:shadow-lg" />
+            </Link>
+          ))}
+        </div>
       </div>
     </main>
   );

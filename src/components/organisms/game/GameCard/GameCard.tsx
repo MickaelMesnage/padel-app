@@ -18,8 +18,9 @@ export const GameCard = ({ game, className }: GameCardProps) => {
 
   return (
     <Card className={className}>
-      <CardContent className="flex flex-col gap-2">
+      <CardContent className="flex flex-col gap-4">
         <GameCardIsCancelledBadge isCancelled={game.isCancelled} />
+        <GameCardTitleTime game={game} />
         <div className="flex flex-row gap-2">
           <GameCardCreatorBadge game={game} />
           <GameCardLevelBadge level={game.level} />
@@ -27,9 +28,8 @@ export const GameCard = ({ game, className }: GameCardProps) => {
             nbOfMissingPlayers={nbOfMissingPlayers}
           />
         </div>
-        <GameCardTitleTime game={game} />
         <GameCardPadelComplex game={game} />
-        <GameCardCreator creator={game.creator} />
+        {/* <GameCardCreator creator={game.creator} /> */}
       </CardContent>
     </Card>
   );

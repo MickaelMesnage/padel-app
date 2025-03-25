@@ -21,5 +21,7 @@ export const GameCardTitleTime = ({ game }: GameCardTitleTimeProps) => {
 
   const label = `🎾 Match • ${stringifiedStartDate} à ${stringifiedStartTime}`;
 
-  return <span className="text-lg text-primary">{label}</span>;
+  return (
+    <span className="text-primary-foreground text-lg font-bold">{label}</span>
+  );
 };
