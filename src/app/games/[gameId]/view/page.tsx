@@ -14,12 +14,6 @@ export default async function ViewGamePage(props: { params: Params }) {
   const game = await getGameById({ gameId });
 
   return (
-    // <main className="container mx-auto px-4 py-8 flex flex-col gap-8">
-    //   <GameViewDetails game={game} />
-    //   <GameViewParticipantsSection game={game} />
-    //   <GameViewActions game={game} />
-    // </main>
-
     <main className="pb-16">
       <div className="bg-primary-foreground">
         <div className="container mx-auto max-w-3xl px-4 py-20">
