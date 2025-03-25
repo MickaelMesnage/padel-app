@@ -14,7 +14,7 @@ export default async function CreateGamePage() {
           </h1>
         </div>
       </div>
-      <div className="container mx-auto px-4 -mt-8">
+      <div className="container mx-auto max-w-3xl px-4 -mt-8">
         <Card>
           <CardContent>
             <GameCreateFormContainer padelComplexs={padelComplexs} />

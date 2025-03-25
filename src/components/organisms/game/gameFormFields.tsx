@@ -31,7 +31,7 @@ export const GameFormFields = ({ padelComplexs }: GameFormFieldsProps) => {
           <FormItem className="text-start col-span-2">
             <FormLabel htmlFor={field.name}>Complexe</FormLabel>
             <FormControl>
-              <SelectNative {...field}>
+              <SelectNative id={field.name} {...field}>
                 <option value="" disabled>
                   Sélectionner un complexe
                 </option>
@@ -55,7 +55,12 @@ export const GameFormFields = ({ padelComplexs }: GameFormFieldsProps) => {
             <FormControl>
               <div className="relative">
                 <Calendar className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                <Input type="date" className="pl-10" {...field} />
+                <Input
+                  id={field.name}
+                  type="date"
+                  className="pl-10"
+                  {...field}
+                />
               </div>
             </FormControl>
             <FormMessage />
@@ -72,7 +77,12 @@ export const GameFormFields = ({ padelComplexs }: GameFormFieldsProps) => {
             <FormControl>
               <div className="relative">
                 <Clock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                <Input type="time" className="pl-10" {...field} />
+                <Input
+                  id={field.name}
+                  type="time"
+                  className="pl-10"
+                  {...field}
+                />
               </div>
             </FormControl>
             <FormMessage />
@@ -90,6 +100,7 @@ export const GameFormFields = ({ padelComplexs }: GameFormFieldsProps) => {
               <div className="relative">
                 <Clock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                 <Input
+                  id={field.name}
                   type="number"
                   min={30}
                   max={240}
@@ -116,6 +127,7 @@ export const GameFormFields = ({ padelComplexs }: GameFormFieldsProps) => {
               <div className="relative">
                 <Users className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                 <Input
+                  id={field.name}
                   type="number"
                   min={1}
                   max={20}
@@ -170,6 +182,7 @@ export const GameFormFields = ({ padelComplexs }: GameFormFieldsProps) => {
             <FormLabel htmlFor={field.name}>Description (optionnel)</FormLabel>
             <FormControl>
               <Textarea
+                id={field.name}
                 placeholder="Informations complémentaires..."
                 className="resize-none"
                 {...field}
