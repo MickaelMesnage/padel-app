@@ -8,7 +8,7 @@ export type GameCardTitleTimeProps = {
 
 export const GameCardTitleTime = ({ game }: GameCardTitleTimeProps) => {
   const stringifiedStartDate = game.dateTime.toLocaleDateString([], {
-    weekday: "short",
+    weekday: "long",
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -19,9 +19,12 @@ export const GameCardTitleTime = ({ game }: GameCardTitleTimeProps) => {
     minute: "2-digit",
   });
 
-  const label = `🎾 Match • ${stringifiedStartDate} à ${stringifiedStartTime}`;
-
   return (
-    <span className="text-primary-foreground text-lg font-bold">{label}</span>
+    <div className="flex items-start gap-2">
+      <span>🎾</span>
+      <span className="text-primary-foreground text-lg font-bold first-letter:uppercase">
+        {stringifiedStartDate} à {stringifiedStartTime}
+      </span>
+    </div>
   );
 };

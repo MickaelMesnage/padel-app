@@ -1,5 +1,6 @@
 import { Game } from "@/application/domain/game/game.entity";
-import { GameCard } from "@/components/organisms/game/GameCard/GameCard";
+import { GameCardMainDetails } from "@/components/organisms/game/GameCard/GameCardMainDetails";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface GameViewDetailsProps {
   game: Game;
@@ -7,9 +8,10 @@ interface GameViewDetailsProps {
 
 export const GameViewDetails = ({ game }: GameViewDetailsProps) => {
   return (
-    <div className="flex flex-col gap-8">
-      <h1 className="text-2xl font-bold">Détails de l&apos;annonce</h1>
-      <GameCard game={game} />
-    </div>
+    <Card>
+      <CardContent>
+        <GameCardMainDetails game={game} />
+      </CardContent>
+    </Card>
   );
 };

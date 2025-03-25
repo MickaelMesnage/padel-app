@@ -27,19 +27,19 @@ export const GameCardPadelComplex = ({ game }: GameCardPadelComplexProps) => {
   const { completeAddress } = new PadelComplexEntity(game.padelComplex);
 
   return (
-    <div className="flex flex-col">
-      <span>
-        <MapIcon className="size-4 mr-2 inline-block stroke-neutral-400" />
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center gap-2">
+        <MapIcon className="shrink-0 size-4 inline-block stroke-neutral-400" />
         <span>{game.padelComplex.name}</span>
-      </span>
-      <span>
-        <MapPin className="size-4 mr-2 inline-block stroke-neutral-400" />
+      </div>
+      <div className="flex items-center gap-2">
+        <MapPin className="shrink-0 size-4 inline-block stroke-neutral-400" />
         <span>{completeAddress}</span>
-      </span>
-      <span>
-        <Clock className="size-4 mr-2 inline-block stroke-neutral-400" />
+      </div>
+      <div className="flex items-center gap-2">
+        <Clock className="shrink-0 size-4 inline-block stroke-neutral-400" />
         <span>{formatDuration(game.durationInMinutes)}</span>
-      </span>
+      </div>
     </div>
   );
 };
