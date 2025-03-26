@@ -1,17 +1,17 @@
 import { Level } from "@/application/domain/constants/level.const";
-import { PadelComplex } from "@/application/domain/padel-complex/padel.entity";
+import { PadelComplex } from "@/application/domain/padel-complex/padel-complex.entity";
 import { User, UserEntity } from "@/application/domain/user/user.entity";
 
 export interface Game {
   id: string;
-  creatorUserId: string;
+  // creatorUserId: string;
   creator: User;
   dateTime: Date;
   durationInMinutes: number;
   nbOfPlayersToFind: number;
   level: Level;
   description: string;
-  padelComplexId: string;
+  // padelComplexId: string;
   isCancelled: boolean;
   padelComplex: PadelComplex;
   participations: {
@@ -26,7 +26,7 @@ export class GameEntity {
   private _isCancelled: boolean;
   constructor(props: Game) {
     this._nbOfPlayersToFind = props.nbOfPlayersToFind;
-    this._creatorUserId = props.creatorUserId;
+    this._creatorUserId = props.creator.id;
     this._isCancelled = props.isCancelled;
     this._players = props.participations.map(
       (participation) => new UserEntity(participation.user)

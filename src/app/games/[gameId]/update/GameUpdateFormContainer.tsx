@@ -2,7 +2,7 @@
 
 import { updateGameAction } from "@/app/games/[gameId]/update/updateGame.action";
 import { Game } from "@/application/domain/game/game.entity";
-import { PadelComplex } from "@/application/domain/padel-complex/padel.entity";
+import { PadelComplex } from "@/application/domain/padel-complex/padel-complex.entity";
 import {
   gameFormSchema,
   GameFormValues,

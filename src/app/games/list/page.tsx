@@ -28,6 +28,7 @@ export default async function ListGamesPage() {
             </Link>
           ))}
         </div>
+        x
       </div>
     </main>
   );

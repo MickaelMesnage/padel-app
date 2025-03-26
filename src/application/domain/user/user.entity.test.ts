@@ -2,14 +2,41 @@ import { describe, expect, it } from "vitest";
 import { UserEntity } from "./user.entity";
 
 describe("UserEntity", () => {
-  describe("isProfileComplete", () => {
-    it("should return true when profile is not null", () => {
+  describe("nickname", () => {
+    it("should return nickname when profile exists", () => {
       const user = new UserEntity({
-        email: "john@example.com",
+        id: "1",
+        email: "john.doe@example.com",
         profile: {
-          nickname: "John",
+          nickname: "JohnD",
           acceptEmails: true,
-          level: "FIVE",
+          level: "ONE",
+        },
+      });
+
+      expect(user.nickname).toBe("JohnD");
+    });
+
+    it("should return email prefix when profile is null", () => {
+      const user = new UserEntity({
+        id: "1",
+        email: "john.doe@example.com",
+        profile: null,
+      });
+
+      expect(user.nickname).toBe("john.doe");
+    });
+  });
+
+  describe("isProfileComplete", () => {
+    it("should return true when profile exists", () => {
+      const user = new UserEntity({
+        id: "1",
+        email: "john.doe@example.com",
+        profile: {
+          nickname: "JohnD",
+          acceptEmails: true,
+          level: "ONE",
         },
       });
 
@@ -18,35 +45,12 @@ describe("UserEntity", () => {
 
     it("should return false when profile is null", () => {
       const user = new UserEntity({
-        email: "john@example.com",
-        profile: null,
-      });
-
-      expect(user.isProfileComplete).toBe(false);
-    });
-  });
-
-  describe("name", () => {
-    it("should return nickname when profile exists", () => {
-      const user = new UserEntity({
-        email: "john@example.com",
-        profile: {
-          nickname: "Johnny",
-          acceptEmails: true,
-          level: "FIVE",
-        },
-      });
-
-      expect(user.name).toBe("Johnny");
-    });
-
-    it("should return email prefix when profile is null", () => {
-      const user = new UserEntity({
+        id: "1",
         email: "john.doe@example.com",
         profile: null,
       });
 
-      expect(user.name).toBe("john.doe");
+      expect(user.isProfileComplete).toBe(false);
     });
   });
 });

@@ -1,5 +1,5 @@
 import { Game } from "@/application/domain/game/game.entity";
-import { PadelComplexEntity } from "@/application/domain/padel-complex/padel.entity";
+import { PadelComplexEntity } from "@/application/domain/padel-complex/padel-complex.entity";
 import { Clock, MapIcon, MapPin } from "lucide-react";
 
 const formatDuration = (durationInMinutes: number): string => {
