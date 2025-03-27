@@ -19,6 +19,10 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  if (isAuthenticated && request.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL(PATHS.home, request.url));
+  }
+
   return NextResponse.next();
 }
 

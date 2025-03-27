@@ -1,8 +1,13 @@
 import { Game } from "@/application/domain/game/game.entity";
 import prisma from "@/lib/prisma/prisma";
 
-export const getGames = async (): Promise<Game[]> => {
+export const getFutureGames = async (): Promise<Game[]> => {
   const games = await prisma.game.findMany({
+    where: {
+      dateTime: {
+        gte: new Date(),
+      },
+    },
     include: {
       creator: {
         include: {

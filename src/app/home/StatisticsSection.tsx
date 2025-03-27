@@ -1,10 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 
-export default async function Page() {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+export const StatisticsSection = async () => {
   return (
     <Card>
       <CardContent>Statistics</CardContent>
     </Card>
   );
-}
+};

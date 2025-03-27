@@ -1,9 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 
-export default async function Loading() {
+export const KPISection = async () => {
   return (
     <Card>
-      <CardContent>KPI loading...</CardContent>
+      <CardContent>KPI</CardContent>
     </Card>
   );
-}
+};

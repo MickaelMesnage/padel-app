@@ -1,11 +1,11 @@
 import { PATHS } from "@/PATHS";
 import Link from "next/link";
-import { getGames } from "@/application/usecases/game/getGames";
+import { getFutureGames } from "@/application/usecases/game/getFutureGames";
 import { Card, CardContent } from "@/components/ui/card";
 import { GameCardMainDetails } from "@/components/organisms/game/GameCard/GameCardMainDetails";
 
 export default async function ListGamesPage() {
-  const games = await getGames();
+  const games = await getFutureGames();
 
   return (
     <main className="pb-16">
