@@ -2,7 +2,7 @@ import { GameUpdateFormContainer } from "@/app/games/[gameId]/update/GameUpdateF
 import { GameEntity } from "@/application/domain/game/game.entity";
 import { getGameById } from "@/application/usecases/game/getGameById";
 import { getPadelComplexs } from "@/application/usecases/padel-complex/getPadelComplexs";
-import { CardWrapper } from "@/components/molecules/CardWrapper";
+import { Card, CardContent } from "@/components/ui/card";
 import { getAuthenticatedUser } from "@/lib/auth/getAuthenticatedUser";
 import { unauthorized } from "next/navigation";
 
@@ -24,8 +24,10 @@ export const GameUpdateFormSection = async ({
   const padelComplexs = await getPadelComplexs();
 
   return (
-    <CardWrapper>
-      <GameUpdateFormContainer game={game} padelComplexs={padelComplexs} />
-    </CardWrapper>
+    <Card>
+      <CardContent>
+        <GameUpdateFormContainer game={game} padelComplexs={padelComplexs} />
+      </CardContent>
+    </Card>
   );
 };

@@ -37,8 +37,22 @@ export class UserEntity {
     return this._profile?.nickname ?? this._email.split("@")[0];
   }
 
-  get isProfileComplete() {
+  isProfileComplete() {
     return this._profile !== null;
+  }
+
+  pourcentageComplete() {
+    let pourcentage = 0;
+
+    if (this._profile?.nickname) {
+      pourcentage += 50;
+    }
+
+    if (this._profile?.level) {
+      pourcentage += 50;
+    }
+
+    return `${pourcentage}%`;
   }
 
   get name() {

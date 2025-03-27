@@ -1,6 +1,5 @@
 import { GameUpdateFormSection } from "@/app/games/[gameId]/update/GameUpdateFormSection";
 import { Loading } from "@/components/molecules/Loading";
-import { Card, CardContent } from "@/components/ui/card";
 import { Suspense } from "react";
 
 type Params = Promise<{ gameId: string }>;
@@ -20,11 +19,7 @@ export default async function UpdateGamePage(props: { params: Params }) {
       </div>
       <div className="container mx-auto max-w-3xl px-4 -mt-8">
         <Suspense fallback={<Loading />}>
-          <Card>
-            <CardContent>
-              <GameUpdateFormSection gameId={gameId} />
-            </CardContent>
-          </Card>
+          <GameUpdateFormSection gameId={gameId} />
         </Suspense>
       </div>
     </main>

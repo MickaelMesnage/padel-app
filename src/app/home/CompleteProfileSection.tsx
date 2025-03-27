@@ -1,9 +1,9 @@
+import { UserEntity } from "@/application/domain/user/user.entity";
 import { getUserById } from "@/application/usecases/user/getUserById";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { getSession } from "@/lib/auth/getSession";
 import { PATHS } from "@/PATHS";
-import Image from "next/image";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export const CompleteProfileSection = async () => {
@@ -14,28 +14,29 @@ export const CompleteProfileSection = async () => {
   }
 
   const user = await getUserById({ id: session.id });
+  const userEntity = new UserEntity(user);
 
-  if (user.profile) {
+  if (userEntity.isProfileComplete()) {
     return null;
   }
 
   return (
-    <Card>
-      <CardContent className="flex flex-col items-center justify-center gap-8">
-        <Image
-          src="/images/man-cartwheeling.webp"
-          alt="Man cartwheeling"
-          width={100}
-          height={100}
-        />
-        <p className="max-w-md text-center">
-          Donne nous quelques informations sur toi qui peuvent nous aider à
-          mieux te connaitre
-        </p>
-        <Link href={PATHS.profile} passHref>
-          <Button>Compléter mon profil</Button>
-        </Link>
-      </CardContent>
-    </Card>
+    <Link href={PATHS.profile} passHref>
+      <button className="w-full" type="button">
+        <Card>
+          <CardContent>
+            <div className="flex items-center justify-between">
+              <div className="grow flex flex-col items-start gap-2">
+                <CardTitle>Compléter mon profil</CardTitle>
+                <span className="text-sm text-muted-foreground text-start">
+                  Profil complété à {userEntity.pourcentageComplete()}
+                </span>
+              </div>
+              <ChevronRight />
+            </div>
+          </CardContent>
+        </Card>
+      </button>
+    </Link>
   );
 };
