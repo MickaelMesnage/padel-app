@@ -1,4 +1,3 @@
-import { GameViewActions } from "@/app/games/[gameId]/view/GameViewActions";
 import { GameViewDetails } from "@/app/games/[gameId]/view/GameViewDetails";
 import { GameViewParticipantsSection } from "@/app/games/[gameId]/view/GameViewParticipantsSection";
 import { GameViewTitle } from "@/app/games/[gameId]/view/GameViewTitle";
@@ -28,7 +27,6 @@ export default async function ViewGamePage(props: { params: Params }) {
       >
         <GameViewDetails game={game} />
         <GameViewParticipantsSection game={game} />
-        <GameViewActions game={game} />
       </div>
     </main>
   );

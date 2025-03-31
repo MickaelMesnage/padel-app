@@ -32,10 +32,8 @@ export const ButtonSmall = forwardRef<HTMLButtonElement, ButtonSmallProps>(
           "group/small-button",
           "border",
           "bg-white",
-          variant === "accept" &&
-            "hover:bg-state-success-light border-state-success-default",
-          variant === "decline" &&
-            "hover:bg-state-error-light  border-state-error-default",
+          variant === "accept" && "hover:bg-success/70 border-success",
+          variant === "decline" && "hover:bg-error/70  border-error",
           className
         )}
         {...rest}
@@ -48,11 +46,19 @@ export const ButtonSmall = forwardRef<HTMLButtonElement, ButtonSmallProps>(
         >
           <div className="flex items-center gap-1">
             {variant === "accept" ? (
-              <CheckCircle className="size-5 stroke-green-400" />
+              <CheckCircle className="size-5 stroke-success" />
             ) : (
-              <XCircle className="size-5 stroke-red-400" />
+              <XCircle className="size-5 stroke-error" />
             )}
-            <span className="text-sm font-semibold text-primary">{label}</span>
+            <span
+              className={twMerge(
+                "text-sm font-semibold",
+                variant === "accept" && "text-success",
+                variant === "decline" && "text-error"
+              )}
+            >
+              {label}
+            </span>
           </div>
         </div>
       </button>
