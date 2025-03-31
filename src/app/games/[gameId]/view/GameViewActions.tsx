@@ -1,8 +1,8 @@
 import { Game, GameEntity } from "@/application/domain/game/game.entity";
-import { getSession } from "@/lib/auth/getSession";
 import Link from "next/link";
 import { PATHS } from "@/PATHS";
 import { Button } from "@/components/ui/button";
+import { getConnectedUser } from "@/lib/auth/getConnectedUser";
 
 interface GameViewActionsProps {
   game: Game;
@@ -10,14 +10,14 @@ interface GameViewActionsProps {
 
 export const GameViewActions = async ({ game }: GameViewActionsProps) => {
   const gameEntity = new GameEntity(game);
-  const session = await getSession();
+  const user = await getConnectedUser();
 
-  const userCanJoinGame = session
-    ? gameEntity.canUserJoinGame({ userId: session.id })
+  const userCanJoinGame = user?.id
+    ? gameEntity.canUserJoinGame({ userId: user?.id })
     : false;
 
-  const userCanLeaveGame = session
-    ? gameEntity.canUserLeaveGame({ userId: session.id })
+  const userCanLeaveGame = user?.id
+    ? gameEntity.canUserLeaveGame({ userId: user?.id })
     : false;
 
   return (

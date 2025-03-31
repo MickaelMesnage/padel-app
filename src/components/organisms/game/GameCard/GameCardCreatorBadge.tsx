@@ -1,20 +1,21 @@
+"use client";
+
 import { Game, GameEntity } from "@/application/domain/game/game.entity";
 import { Badge } from "@/components/ui/badge";
-import { getSession } from "@/lib/auth/getSession";
+import { authClient } from "@/lib/auth/auth-client";
 
 interface GameCardCreatorBadgeProps {
   game: Game;
 }
 
-export const GameCardCreatorBadge = async ({
-  game,
-}: GameCardCreatorBadgeProps) => {
-  const session = await getSession();
+export const GameCardCreatorBadge = ({ game }: GameCardCreatorBadgeProps) => {
+  const { data: session } = authClient.useSession();
+
   if (!session) return null;
 
   const gameEntity = new GameEntity(game);
 
-  if (!gameEntity.isUserCreator({ userId: session.id })) return null;
+  if (!gameEntity.isUserCreator({ userId: session.user.id })) return null;
 
   return <Badge className="text-sm">Organisé par moi</Badge>;
 };

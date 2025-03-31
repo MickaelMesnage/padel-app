@@ -1,4 +1,5 @@
 import { Level } from "@/application/domain/constants/level.const";
+import { joinGame } from "@/application/usecases/game/joinGame";
 import prisma from "@/lib/prisma/prisma";
 
 export const createGame = async ({
@@ -21,6 +22,8 @@ export const createGame = async ({
       creatorUserId: userId,
     },
   });
+
+  await joinGame({ userId, gameId: game.id });
 
   return game;
 };

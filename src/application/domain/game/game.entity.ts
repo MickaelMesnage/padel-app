@@ -51,10 +51,7 @@ export class GameEntity {
 
   public canUserJoinGame(props: { userId: string }) {
     return (
-      !this.isFull &&
-      !this._isCancelled &&
-      !this.isUserParticipating(props) &&
-      !this.isUserCreator(props)
+      !this.isFull && !this._isCancelled && !this.isUserParticipating(props)
     );
   }
 
@@ -87,7 +84,7 @@ export class GameEntity {
   }
 
   public get nbOfMissingPlayers() {
-    return this._nbOfPlayersToFind - this.nbOfPlayers;
+    return this._nbOfPlayersToFind + 1 - this.nbOfPlayers;
   }
 
   public get isFull() {
